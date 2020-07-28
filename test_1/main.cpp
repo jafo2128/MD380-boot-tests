@@ -25,7 +25,7 @@
  *   along with this program; if not, see <http://www.gnu.org/licenses/>   *
  ***************************************************************************/
 
-#include "../device/stm32f405xx.h"
+#include "../device/stm32f4xx.h"
 
 void delay()
 {
@@ -46,9 +46,9 @@ void Reset_Handler()
     GPIOE->MODER |= (1 << 2) | 1;       // PE0 and PE1 outputs
     for(;;)
     {
-        GPIOE->BSRRL=3;                 // Turn on both PE0 and PE1
+        GPIOE->BSRR=3;                 // Turn both PE0 and PE1 to HIGH
         delay();
-        GPIOE->BSRRH=3;                 // Turn on both PE0 and PE1
+        GPIOE->BSRR=3<<16;                 // Turn both PE0 and PE1 to LOW
         delay();
     }
 }
