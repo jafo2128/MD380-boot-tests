@@ -33,12 +33,12 @@ class Pin
 public:
     static void high()
     {
-        reinterpret_cast<GPIO_TypeDef*>(P)->BSRRL = 1 << N;
+        reinterpret_cast<GPIO_TypeDef*>(P)->BSRR = 1 << N;
     }
 
     static void low()
     {
-        reinterpret_cast<GPIO_TypeDef*>(P)->BSRRH = 1 << N;
+        reinterpret_cast<GPIO_TypeDef*>(P)->BSRR = 1 << (N + 16);
     }
 
 private:

@@ -17,7 +17,7 @@ INCLUDE_DIRS :=
 ##
 ## List here additional defines
 ##
-DEFINES :=
+DEFINES := -DSTM32F405xx
 
 ##
 ## Define used to select target processor
@@ -86,6 +86,8 @@ all: main.elf
 	$(ECHO) "[CP  ] main.bin"
 	$(Q)$(CP) -O binary main.elf main.bin
 	$(Q)$(SZ) main.elf
+	radio_tool --wrap -r DM1701 -s 0x0800C000:main.bin -o wrapped.bin
+	radio_tool --fw-info -i wrapped.bin
 
 main.elf: $(OBJ) #all-recursive
 	$(ECHO) "[LD  ] main.elf"
